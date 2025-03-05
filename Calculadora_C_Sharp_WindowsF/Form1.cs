@@ -1,3 +1,8 @@
+using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+
 namespace Calculadora_C_Sharp_WindowsF
 {
     public partial class Form1 : Form
@@ -5,6 +10,62 @@ namespace Calculadora_C_Sharp_WindowsF
         public Form1()
         {
             InitializeComponent();
+
+            // Remove a borda padrão da TextBox
+            textBox1.BorderStyle = BorderStyle.None;
+
+            // Registra os eventos para redesenhar a borda arredondada
+            this.Paint += new PaintEventHandler(Form1_Paint);
+            textBox1.LocationChanged += new EventHandler(textBox1_LocationChanged);
+            textBox1.SizeChanged += new EventHandler(textBox1_SizeChanged);
+
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            // Define o raio do arredondamento
+            int borderRadius = 5;
+
+            // Obtém a área da TextBox
+            Rectangle textBoxBounds = textBox1.Bounds;
+
+            // Ajusta as coordenadas para desenhar a borda corretamente
+            textBoxBounds.Inflate(1, 1); // Aumenta ligeiramente o retângulo para evitar cortes
+
+            // Cria um caminho gráfico para desenhar a borda arredondada
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                // Cria um retângulo arredondado
+                path.AddArc(textBoxBounds.Left, textBoxBounds.Top, borderRadius * 2, borderRadius * 2, 180, 90); // Canto superior esquerdo
+                path.AddArc(textBoxBounds.Right - borderRadius * 2, textBoxBounds.Top, borderRadius * 2, borderRadius * 2, 270, 90); // Canto superior direito
+                path.AddArc(textBoxBounds.Right - borderRadius * 2, textBoxBounds.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90); // Canto inferior direito
+                path.AddArc(textBoxBounds.Left, textBoxBounds.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90); // Canto inferior esquerdo
+                path.CloseFigure();
+
+                // Desenha a borda arredondada
+                using (Pen pen = new Pen(Color.DimGray, 4)) // Cor e espessura da borda
+                {
+                    e.Graphics.SmoothingMode = SmoothingMode.AntiAlias; // Suaviza as bordas
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void textBox1_LocationChanged(object sender, EventArgs e)
+        {
+            // Redesenha o formulário quando a localização da TextBox muda
+            this.Invalidate();
+        }
+
+        private void textBox1_SizeChanged(object sender, EventArgs e)
+        {
+            // Redesenha o formulário quando o tamanho da TextBox muda
+            this.Invalidate();
+        }
+
+        private void buttonFormaRedonda1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
