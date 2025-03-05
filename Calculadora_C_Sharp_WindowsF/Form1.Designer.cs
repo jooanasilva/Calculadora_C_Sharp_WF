@@ -78,7 +78,7 @@
             // 
             // buttonFormaRedonda3
             // 
-            buttonFormaRedonda3.BackColor = Color.SlateGray;
+            buttonFormaRedonda3.BackColor = Color.LightSlateGray;
             buttonFormaRedonda3.FlatAppearance.BorderSize = 0;
             buttonFormaRedonda3.FlatStyle = FlatStyle.Flat;
             buttonFormaRedonda3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
