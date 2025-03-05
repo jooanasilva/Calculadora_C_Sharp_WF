@@ -46,6 +46,7 @@
             buttonFormaRedonda14 = new ButtonFormaRedonda();
             buttonFormaRedonda15 = new ButtonFormaRedonda();
             buttonFormaRedonda17 = new ButtonFormaRedonda();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // buttonFormaRedonda1
@@ -300,11 +301,23 @@
             buttonFormaRedonda17.Text = "-";
             buttonFormaRedonda17.UseVisualStyleBackColor = false;
             // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.FromArgb(64, 64, 64);
+            textBox1.Font = new Font("Segoe UI", 33F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox1.ForeColor = Color.WhiteSmoke;
+            textBox1.Location = new Point(38, 23);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(361, 89);
+            textBox1.TabIndex = 27;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(437, 616);
+            Controls.Add(textBox1);
             Controls.Add(buttonFormaRedonda17);
             Controls.Add(buttonFormaRedonda15);
             Controls.Add(buttonFormaRedonda14);
@@ -326,6 +339,7 @@
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -347,5 +361,6 @@
         private ButtonFormaRedonda buttonFormaRedonda14;
         private ButtonFormaRedonda buttonFormaRedonda15;
         private ButtonFormaRedonda buttonFormaRedonda17;
+        private TextBox textBox1;
     }
 }
