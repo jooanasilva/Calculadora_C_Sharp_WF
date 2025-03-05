@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Calculadora_C_Sharp_WindowsF
 {
+    [ToolboxItem(true)]
+
     internal class ButtonFormaRedonda : Button
     {
         public ButtonFormaRedonda()

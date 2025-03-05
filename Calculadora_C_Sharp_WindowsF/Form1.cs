@@ -5,6 +5,7 @@ namespace Calculadora_C_Sharp_WindowsF
         public Form1()
         {
             InitializeComponent();
+
         }
     }
 }
