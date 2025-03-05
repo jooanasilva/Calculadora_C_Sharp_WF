@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Calculadora_C_Sharp_WindowsF
 {
     [ToolboxItem(true)]
 
-    internal class ButtonFormaRedonda : Button
+    public class ButtonFormaRedonda : Button
     {
         public ButtonFormaRedonda()
         {
@@ -50,5 +51,7 @@ namespace Calculadora_C_Sharp_WindowsF
             }
         }
     }
+
 }
+
 

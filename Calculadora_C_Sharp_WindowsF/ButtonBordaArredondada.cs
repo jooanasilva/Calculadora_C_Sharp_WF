@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace Calculadora_C_Sharp_WindowsF
 {
-    internal class ButtonBordaArredondada : Button
+    public class ButtonBordaArredondada : Button
     {
         private int borderSize = 0;
         private int borderRadius = 40;
@@ -44,37 +42,37 @@ namespace Calculadora_C_Sharp_WindowsF
         protected override void OnPaint(PaintEventArgs pevent)
         {
             base.OnPaint(pevent);
+            if (pevent == null || pevent.Graphics == null)
+            {
+                return; // Sai do método se pevent ou Graphics forem null
+            }
+
             Rectangle rectSurface = this.ClientRectangle;
             Rectangle rectBorder = Rectangle.Inflate(rectSurface, -borderSize, -borderSize);
             int smoothSize = 2;
             if (borderSize > 0)
                 smoothSize = borderSize;
-            if (borderRadius > 2) //Rounded button
+
+            if (borderRadius > 2) // Botão arredondado
             {
                 using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
-                using (Pen penSurface = new Pen(this.Parent.BackColor, smoothSize))
+                using (Pen penSurface = new Pen(this.Parent?.BackColor ?? Color.White, smoothSize)) // Verifica se Parent não é null
                 using (Pen penBorder = new Pen(borderColor, borderSize))
                 {
                     pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    //Button surface
                     this.Region = new Region(pathSurface);
-                    //Draw surface border for HD result
                     pevent.Graphics.DrawPath(penSurface, pathSurface);
-                    //Button border                    
+
                     if (borderSize >= 1)
-                        //Draw control border
                         pevent.Graphics.DrawPath(penBorder, pathBorder);
-
                 }
-
             }
-            else //Normal button
+            else // Botão normal
             {
                 pevent.Graphics.SmoothingMode = SmoothingMode.None;
-                //Button surface
                 this.Region = new Region(rectSurface);
-                //Button border
+
                 if (borderSize >= 1)
                 {
                     using (Pen penBorder = new Pen(borderColor, borderSize))
@@ -84,15 +82,20 @@ namespace Calculadora_C_Sharp_WindowsF
                     }
                 }
             }
-
         }
+
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
-            this.Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
+            if (this.Parent != null) // Verifica se Parent não é null
+            {
+                this.Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
+            }
         }
+
         private void Container_BackColorChanged(object sender, EventArgs e)
         {
+            // O compilador agora entende que sender não é null
             this.Invalidate();
         }
     }

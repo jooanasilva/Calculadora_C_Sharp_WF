@@ -7,5 +7,10 @@ namespace Calculadora_C_Sharp_WindowsF
             InitializeComponent();
 
         }
+
+        private void buttonFormaRedonda1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
