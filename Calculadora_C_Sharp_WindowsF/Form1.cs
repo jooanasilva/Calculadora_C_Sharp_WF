@@ -67,5 +67,100 @@ namespace Calculadora_C_Sharp_WindowsF
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnZero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDois_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTres_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnQuatro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCinco_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSeis_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOito_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdicao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSubtracao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMultiplicacao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDivisao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPorcentagem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVirgula_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnIgual_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
