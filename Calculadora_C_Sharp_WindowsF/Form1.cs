@@ -12,12 +12,12 @@ namespace Calculadora_C_Sharp_WindowsF
             InitializeComponent();
 
             // Remove a borda padrão da TextBox
-            textBox1.BorderStyle = BorderStyle.None;
+            txtResultado.BorderStyle = BorderStyle.None;
 
             // Registra os eventos para redesenhar a borda arredondada
             this.Paint += new PaintEventHandler(Form1_Paint);
-            textBox1.LocationChanged += new EventHandler(textBox1_LocationChanged);
-            textBox1.SizeChanged += new EventHandler(textBox1_SizeChanged);
+            txtResultado.LocationChanged += new EventHandler(textBox1_LocationChanged);
+            txtResultado.SizeChanged += new EventHandler(textBox1_SizeChanged);
 
         }
 
@@ -27,7 +27,7 @@ namespace Calculadora_C_Sharp_WindowsF
             int borderRadius = 5;
 
             // Obtém a área da TextBox
-            Rectangle textBoxBounds = textBox1.Bounds;
+            Rectangle textBoxBounds = txtResultado.Bounds;
 
             // Ajusta as coordenadas para desenhar a borda corretamente
             textBoxBounds.Inflate(1, 1); // Aumenta ligeiramente o retângulo para evitar cortes

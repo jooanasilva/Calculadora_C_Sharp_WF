@@ -46,7 +46,7 @@
             btnDivisao = new ButtonFormaRedonda();
             btnMultiplicacao = new ButtonFormaRedonda();
             btnSubtracao = new ButtonFormaRedonda();
-            textBox1 = new TextBox();
+            txtResultado = new TextBox();
             label1 = new Label();
             SuspendLayout();
             // 
@@ -320,18 +320,18 @@
             btnSubtracao.UseVisualStyleBackColor = false;
             btnSubtracao.Click += btnSubtracao_Click;
             // 
-            // textBox1
+            // txtResultado
             // 
-            textBox1.BackColor = Color.FromArgb(64, 64, 64);
-            textBox1.Font = new Font("Segoe UI", 33F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.WhiteSmoke;
-            textBox1.Location = new Point(38, 23);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(361, 89);
-            textBox1.TabIndex = 27;
-            textBox1.TextAlign = HorizontalAlignment.Right;
+            txtResultado.BackColor = Color.FromArgb(64, 64, 64);
+            txtResultado.Font = new Font("Segoe UI", 33F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtResultado.ForeColor = Color.WhiteSmoke;
+            txtResultado.Location = new Point(38, 23);
+            txtResultado.Multiline = true;
+            txtResultado.Name = "txtResultado";
+            txtResultado.ReadOnly = true;
+            txtResultado.Size = new Size(361, 89);
+            txtResultado.TabIndex = 27;
+            txtResultado.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -347,7 +347,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(437, 616);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(txtResultado);
             Controls.Add(btnSubtracao);
             Controls.Add(btnMultiplicacao);
             Controls.Add(btnDivisao);
@@ -393,7 +393,7 @@
         private ButtonFormaRedonda btnDivisao;
         private ButtonFormaRedonda btnMultiplicacao;
         private ButtonFormaRedonda btnSubtracao;
-        private TextBox textBox1;
+        private TextBox txtResultado;
         private Label label1;
     }
 }
