@@ -75,82 +75,82 @@ namespace Calculadora_C_Sharp_WindowsF
 
         private void btnZero_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "0";
         }
 
         private void btnUm_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "1";
         }
 
         private void btnDois_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "2";
         }
 
         private void btnTres_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "3";
         }
 
         private void btnQuatro_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "4";
         }
 
         private void btnCinco_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "5";
         }
 
         private void btnSeis_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "6";
         }
 
         private void btnSete_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "7";
         }
 
         private void btnOito_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "8";
         }
 
         private void btnNove_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "9";
         }
 
         private void btnAdicao_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "+";
         }
 
         private void btnSubtracao_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "-";
         }
 
         private void btnMultiplicacao_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "x";
         }
 
         private void btnDivisao_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "÷";
         }
 
         private void btnPorcentagem_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = "%";
         }
 
         private void btnVirgula_Click(object sender, EventArgs e)
         {
-
+            txtResultado.Text = ",";
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
