@@ -7,6 +7,7 @@ namespace Calculadora_C_Sharp_WindowsF
 {
     public partial class Form1 : Form
     {
+
         // Propriedades de Resultado e Valor
         public decimal Resultado { get; set; }
         public decimal Valor { get; set; }
@@ -15,6 +16,12 @@ namespace Calculadora_C_Sharp_WindowsF
         private Operacao OperacaoSelecionada { get; set; }
 
         // Definição das operações possíveis
+
+        private decimal Resultado { get; set; }
+        private decimal Valor { get; set; }
+        private Operacao OperacaoSelecionada { get; set; }
+
+
         private enum Operacao
         {
             Adicao,
@@ -28,6 +35,7 @@ namespace Calculadora_C_Sharp_WindowsF
         {
             InitializeComponent();
 
+
             // Remove a borda padrão da TextBox
             txtResultado.BorderStyle = BorderStyle.None;
 
@@ -35,10 +43,12 @@ namespace Calculadora_C_Sharp_WindowsF
             this.Paint += new PaintEventHandler(Form1_Paint);
             txtResultado.LocationChanged += new EventHandler(textBox1_LocationChanged);
             txtResultado.SizeChanged += new EventHandler(textBox1_SizeChanged);
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+
             // Define o raio do arredondamento
             int borderRadius = 5;
 
@@ -65,6 +75,7 @@ namespace Calculadora_C_Sharp_WindowsF
                     e.Graphics.DrawPath(pen, path);
                 }
             }
+
         }
 
         private void textBox1_LocationChanged(object sender, EventArgs e)
@@ -134,6 +145,7 @@ namespace Calculadora_C_Sharp_WindowsF
             OperacaoSelecionada = Operacao.Adicao;
             Valor = Convert.ToDecimal(txtResultado.Text);
             txtResultado.Text = "";
+
         }
 
         private void btnSubtracao_Click(object sender, EventArgs e)
@@ -171,16 +183,21 @@ namespace Calculadora_C_Sharp_WindowsF
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
+
             // Limpar a tela
             txtResultado.Clear();
             Resultado = 0;
             Valor = 0;
             OperacaoSelecionada = default(Operacao); // Reseta a operação
+
+            txtResultado.Text = "";
+
         }
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
             decimal valorAtual = Convert.ToDecimal(txtResultado.Text);
+
 
             switch (OperacaoSelecionada)
             {
@@ -208,6 +225,34 @@ namespace Calculadora_C_Sharp_WindowsF
             }
 
             txtResultado.Text = Resultado.ToString();
+
+            switch (OperacaoSelecionada)
+            {
+                case Operacao.Adicao:
+                    Resultado = Valor + Convert.ToDecimal(txtResultado.Text);
+                    break;
+                case Operacao.Subtracao:
+                    Resultado = Valor - Convert.ToDecimal(txtResultado.Text);
+                    break;
+                case Operacao.Multiplicacao:
+                    Resultado = Valor * Convert.ToDecimal(txtResultado.Text);
+                    break;
+                case Operacao.Divisao:
+                    Resultado = Valor / Convert.ToDecimal(txtResultado.Text);
+                    break;
+                case Operacao.Porcentagem:
+                    Resultado = Valor % Convert.ToDecimal(txtResultado.Text);
+                    break;
+            }
+
+            txtResultado.Text = Convert.ToString(Resultado);
+        }
+
+        private void btnVirugla_Click(object sender, EventArgs e)
+        {
+            if (!txtResultado.Text.Contains(","))
+                txtResultado.Text += ",";
+
         }
     }
 }
