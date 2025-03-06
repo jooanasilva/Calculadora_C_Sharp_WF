@@ -47,8 +47,6 @@
             btnMultiplicacao = new ButtonFormaRedonda();
             btnSubtracao = new ButtonFormaRedonda();
             txtResultado = new TextBox();
-            label1 = new Label();
-            SuspendLayout();
             // 
             // btnZero
             // 
@@ -354,17 +352,16 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(46, 46);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 15);
-            label1.TabIndex = 28;
+            // 
+            // label2
+            // 
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(382, 462);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtResultado);
             Controls.Add(btnSubtracao);
@@ -415,5 +412,6 @@
         private ButtonFormaRedonda btnSubtracao;
         private TextBox txtResultado;
         private Label label1;
+        private Label label2;
     }
 }

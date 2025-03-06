@@ -146,11 +146,7 @@ namespace Calculadora_C_Sharp_WindowsF
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            // Limpar a tela
-            txtResultado.Clear();
-            Resultado = 0;
-            Valor = 0;
-            OperacaoSelecionada = default(Operacao); // Reseta a operação
+            txtResultado.Text = "";
         }
 
         private void btnIgual_Click(object sender, EventArgs e)
@@ -176,6 +172,12 @@ namespace Calculadora_C_Sharp_WindowsF
             }
 
             txtResultado.Text = Convert.ToString(Resultado);
+        }
+
+        private void btnVirugla_Click(object sender, EventArgs e)
+        {
+            if (!txtResultado.Text.Contains(","))
+                txtResultado.Text += ",";
         }
     }
 }
