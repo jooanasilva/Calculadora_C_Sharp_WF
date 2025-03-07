@@ -1,27 +1,17 @@
-using System;
-using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+
 
 namespace Calculadora_C_Sharp_WindowsF
 {
     public partial class Form1 : Form
     {
-
-        // Propriedades de Resultado e Valor
-        public decimal Resultado { get; set; }
-        public decimal Valor { get; set; }
-
-        // Enum para as operações
-        private Operacao OperacaoSelecionada { get; set; }
-
-        // Definição das operações possíveis
-
+        // Variáveis que armazenam o resultado, o valor digitado e a operação selecionada
         private decimal Resultado { get; set; }
         private decimal Valor { get; set; }
         private Operacao OperacaoSelecionada { get; set; }
 
-
+        // Enum para definir as operações
         private enum Operacao
         {
             Adicao,
@@ -31,11 +21,17 @@ namespace Calculadora_C_Sharp_WindowsF
             Porcentagem
         }
 
+        // CRIANDO BORDA NA TEXTBOX
+        // O WF não oferece recurso direto para crição de bordas arredondadas em controles
+        // para ter uma borda arredondada, você precisa desenhar-la por conta própria
+        // e isso é feito com o Paint, desenhando um caminho arredondado com GraphicsPath
+        // e depois desenhando esse caminho com um Pen
         public Form1()
         {
             InitializeComponent();
 
-
+            // Essa linha serve para remover a borda padrão da TextBox,
+            // se você não fizer isso, a TextBox ainda terá as bordas retas
             // Remove a borda padrão da TextBox
             txtResultado.BorderStyle = BorderStyle.None;
 
@@ -46,19 +42,23 @@ namespace Calculadora_C_Sharp_WindowsF
 
         }
 
+        // O evento Paint é chamado toda vez que o controle (ou o formulário) precisa ser redesenhado
+        // EX: Quado o controle aparece na tela, quando ele é redimensionado, quando ele é movido, etc
+        // Ele vai sempre precisar "pintar" o controle
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-
-            // Define o raio do arredondamento
+            // Define o quanto as bordas seram arredondadas
             int borderRadius = 5;
 
-            // Obtém a área da TextBox
+            // Obtém a área da TextBox - localização e tamanho
             Rectangle textBoxBounds = txtResultado.Bounds;
 
-            // Ajusta as coordenadas para desenhar a borda corretamente
+            // Ajusta um pouco a área para desenhar sem cortes
             textBoxBounds.Inflate(1, 1); // Aumenta ligeiramente o retângulo para evitar cortes
 
-            // Cria um caminho gráfico para desenhar a borda arredondada
+            // GRAPIHCS PATH é uma classe usada para criar formas complexas e caminhos gráficos,
+            // como linhas, curvas, arcos, retângulos, como se fosse moldes para desenhar
+            // Cria a forma da borda arredondada
             using (GraphicsPath path = new GraphicsPath())
             {
                 // Cria um retângulo arredondado
@@ -68,30 +68,42 @@ namespace Calculadora_C_Sharp_WindowsF
                 path.AddArc(textBoxBounds.Left, textBoxBounds.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90); // Canto inferior esquerdo
                 path.CloseFigure();
 
-                // Desenha a borda arredondada
-                using (Pen pen = new Pen(Color.DimGray, 4)) // Cor e espessura da borda
+                // PEN é usado para desenhar linhas e curvas, ele quem define a aparência da linha como: cor, espessura, estilo
+                // Desenha a borda arredondada com uma linha cinza
+                using (Pen pen = new Pen(Color.DimGray, 4)) // Cor e espessura da linha
                 {
                     e.Graphics.SmoothingMode = SmoothingMode.AntiAlias; // Suaviza as bordas
                     e.Graphics.DrawPath(pen, path);
                 }
             }
-
         }
 
         private void textBox1_LocationChanged(object sender, EventArgs e)
         {
             // Redesenha o formulário quando a localização da TextBox muda
-            this.Invalidate();
+            this.Invalidate(); // Invalida a área do formulário para forçar o redesenho
         }
 
+        // Quando o tamanho da TextBox mudar, a borda será redesenhada
         private void textBox1_SizeChanged(object sender, EventArgs e)
         {
-            // Redesenha o formulário quando o tamanho da TextBox muda
-            this.Invalidate();
+            this.Invalidate(); // Força o redesenho do formulário
         }
 
+        private void buttonFormaRedonda1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        //AÇÕES DOS BOTÕES
         private void btnZero_Click(object sender, EventArgs e)
         {
+            //Quando o usário clicar no botão zero, o número zero será exibido na tela
             txtResultado.Text += "0";
         }
 
@@ -140,11 +152,12 @@ namespace Calculadora_C_Sharp_WindowsF
             txtResultado.Text += "9";
         }
 
+        //OPERAÇÕES
         private void btnAdicao_Click(object sender, EventArgs e)
         {
-            OperacaoSelecionada = Operacao.Adicao;
-            Valor = Convert.ToDecimal(txtResultado.Text);
-            txtResultado.Text = "";
+            OperacaoSelecionada = Operacao.Adicao; // Seleciona a operação de adição
+            Valor = Convert.ToDecimal(txtResultado.Text); // Armazena o valor que foi digitado pelo usuário
+            txtResultado.Text = ""; // Limpa a textBox para o próximo número
 
         }
 
@@ -176,56 +189,26 @@ namespace Calculadora_C_Sharp_WindowsF
             txtResultado.Text = "";
         }
 
+        // ACAO PARA BOTAO DE VIRUGLA  
         private void btnVirgula_Click(object sender, EventArgs e)
         {
-            txtResultado.Text += ",";
+            txtResultado.Text += ","; // Adiciona a vírgula a tetxBox
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-
             // Limpar a tela
-            txtResultado.Clear();
-            Resultado = 0;
-            Valor = 0;
+            txtResultado.Clear(); // Limpa a textBox
+            Resultado = 0; // Reseta o resultado
+            Valor = 0; // Reseta o valor
             OperacaoSelecionada = default(Operacao); // Reseta a operação
-
-            txtResultado.Text = "";
-
         }
 
+        // CALCULAR O RESULTADO
         private void btnIgual_Click(object sender, EventArgs e)
         {
-            decimal valorAtual = Convert.ToDecimal(txtResultado.Text);
-
-
-            switch (OperacaoSelecionada)
-            {
-                case Operacao.Adicao:
-                    Resultado = Valor + valorAtual;
-                    break;
-                case Operacao.Subtracao:
-                    Resultado = Valor - valorAtual;
-                    break;
-                case Operacao.Multiplicacao:
-                    Resultado = Valor * valorAtual;
-                    break;
-                case Operacao.Divisao:
-                    if (valorAtual != 0)
-                        Resultado = Valor / valorAtual;
-                    else
-                        MessageBox.Show("Não é possível dividir por zero.");
-                    break;
-                case Operacao.Porcentagem:
-                    Resultado = Valor * (valorAtual / 100);
-                    break;
-                default:
-                    MessageBox.Show("Operação inválida.");
-                    break;
-            }
-
-            txtResultado.Text = Resultado.ToString();
-
+            decimal valorAtual = Convert.ToDecimal(txtResultado.Text); // Pega o número atual da textBox
+            // Realiza a operação selecionada
             switch (OperacaoSelecionada)
             {
                 case Operacao.Adicao:
@@ -241,18 +224,12 @@ namespace Calculadora_C_Sharp_WindowsF
                     Resultado = Valor / Convert.ToDecimal(txtResultado.Text);
                     break;
                 case Operacao.Porcentagem:
-                    Resultado = Valor % Convert.ToDecimal(txtResultado.Text);
+                    Resultado = Valor * (valorAtual / 100);
                     break;
+
             }
 
-            txtResultado.Text = Convert.ToString(Resultado);
-        }
-
-        private void btnVirugla_Click(object sender, EventArgs e)
-        {
-            if (!txtResultado.Text.Contains(","))
-                txtResultado.Text += ",";
-
+            txtResultado.Text = Convert.ToString(Resultado); // Exibe o resultado na textBox
         }
     }
 }
