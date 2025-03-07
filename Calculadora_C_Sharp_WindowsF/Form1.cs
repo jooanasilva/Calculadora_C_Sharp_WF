@@ -21,11 +21,17 @@ namespace Calculadora_C_Sharp_WindowsF
             Porcentagem
         }
 
-        //CRIANDO BORDA NA TEXTBOX
+        // CRIANDO BORDA NA TEXTBOX
+        // O WF não oferece recurso direto para crição de bordas arredondadas em controles
+        // para ter uma borda arredondada, você precisa desenhar-la por conta própria
+        // e isso é feito com o Paint, desenhando um caminho arredondado com GraphicsPath
+        // e depois desenhando esse caminho com um Pen
         public Form1()
         {
             InitializeComponent();
 
+            // Essa linha serve para remover a borda padrão da TextBox,
+            // se você não fizer isso, a TextBox ainda terá as bordas retas
             // Remove a borda padrão da TextBox
             txtResultado.BorderStyle = BorderStyle.None;
 
@@ -36,6 +42,9 @@ namespace Calculadora_C_Sharp_WindowsF
 
         }
 
+        // O evento Paint é chamado toda vez que o controle (ou o formulário) precisa ser redesenhado
+        // EX: Quado o controle aparece na tela, quando ele é redimensionado, quando ele é movido, etc
+        // Ele vai sempre precisar "pintar" o controle
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // Define o quanto as bordas seram arredondadas
@@ -47,6 +56,8 @@ namespace Calculadora_C_Sharp_WindowsF
             // Ajusta um pouco a área para desenhar sem cortes
             textBoxBounds.Inflate(1, 1); // Aumenta ligeiramente o retângulo para evitar cortes
 
+            // GRAPIHCS PATH é uma classe usada para criar formas complexas e caminhos gráficos,
+            // como linhas, curvas, arcos, retângulos, como se fosse moldes para desenhar
             // Cria a forma da borda arredondada
             using (GraphicsPath path = new GraphicsPath())
             {
@@ -57,6 +68,7 @@ namespace Calculadora_C_Sharp_WindowsF
                 path.AddArc(textBoxBounds.Left, textBoxBounds.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90); // Canto inferior esquerdo
                 path.CloseFigure();
 
+                // PEN é usado para desenhar linhas e curvas, ele quem define a aparência da linha como: cor, espessura, estilo
                 // Desenha a borda arredondada com uma linha cinza
                 using (Pen pen = new Pen(Color.DimGray, 4)) // Cor e espessura da linha
                 {
