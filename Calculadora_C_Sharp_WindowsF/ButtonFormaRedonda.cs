@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Calculadora_C_Sharp_WindowsF
 {
-    [ToolboxItem(true)]
+    [ToolboxItem(true)] // Permitir que o botão seja adicionado ao formulário
 
     public class ButtonFormaRedonda : Button
     {
